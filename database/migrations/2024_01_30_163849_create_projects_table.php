@@ -20,8 +20,10 @@ return new class extends Migration
             $progetti->string("language");
             $progetti->timestamps();
         });
-
-    }
+        Schema::table('projects', function (Blueprint $table) {
+            $table->unsignedBigInteger('types_id');
+            $table->foreign('types_id')->on('types');
+    });}
 
     /**
      * Reverse the migrations.

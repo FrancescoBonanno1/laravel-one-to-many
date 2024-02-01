@@ -11,7 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        
+        Schema::create('types', function (Blueprint $tipologia) {
+            $tipologia->id();
+            $tipologia->string("description");
+            $tipologia->boolean("available");
+            $tipologia->timestamps();
+        });
     }
 
     /**

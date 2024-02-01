@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('projects', function (Blueprint $progetti) {
+        Schema::table('projects', function (Blueprint $progetti) {
             $progetti->id();
             $progetti->string("name");
             $progetti->text("description");
@@ -19,7 +19,12 @@ return new class extends Migration
             $progetti->date("dataCreation");
             $progetti->string("language");
             $progetti->timestamps();
+
+            
         });
+        Schema::table('projects', function (Blueprint $table) {
+            $table->unsignedBigInteger('types_id')->nullable()->after('id');
+            $table->foreign('types_id')->references('types')->on('id')->nullOnDelete();});
     }
 
     /**
@@ -27,6 +32,10 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('projects');
+        Schema::table('projects', function(Blueprint $table){
+            $table->dropForeign('projects_type_id_foreign');
+            $table->dropColumn('category_id');
+
+        });
     }
 };

@@ -12,14 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('projects', function (Blueprint $progetti) {
-            $progetti->id();
-            $progetti->string("name");
-            $progetti->text("description");
-            $progetti->string("image");
-            $progetti->date("dataCreation");
-            $progetti->string("language");
-            $progetti->timestamps();
-
+            $progetti->string("miscellaneous");
+            $progetti->integer('type_id')->unsigned();
+            $progetti->string('priority_name');
             
         });
         Schema::table('projects', function (Blueprint $table) {

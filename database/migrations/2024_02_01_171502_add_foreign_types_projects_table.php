@@ -11,15 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('projects', function (Blueprint $progetti) {
-            $progetti->string("miscellaneous");
-            $progetti->integer('type_id')->unsigned();
-            $progetti->string('priority_name');
-            
-        });
-        Schema::table('projects', function (Blueprint $table) {
+          Schema::table('projects', function (Blueprint $table) {
             $table->unsignedBigInteger('types_id')->nullable()->after('id');
-            $table->foreign('types_id')->references('types')->on('id')->nullOnDelete();});
+            $table->foreign('types_id')->references('id')->on('types')->nullOnDelete();});
     }
 
     /**
